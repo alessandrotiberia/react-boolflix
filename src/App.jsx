@@ -3,10 +3,12 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
+import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
   return (
     <ThemeProvider>
+      <MovieProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<MainLayout />}>
@@ -15,6 +17,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </MovieProvider>
     </ThemeProvider>
   );
 }

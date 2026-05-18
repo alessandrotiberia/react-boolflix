@@ -29,8 +29,8 @@ function MovieProvider({ children }) {
 
     const apikey = 'd748cf03e21867e26d4be63b5bb335f4';
     //Costruiamo i due endpoint separati per film e serie TV utilizzando i template literal
-    const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&query=${query}&language=it-IT`;
-    const seriesUrl = `https://api.themoviedb.org/3/search/tv?api_key=${apikey}&query=${query}&language=it-IT`;
+    const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&language=it-IT`;
+    const seriesUrl = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&language=it-IT`;
 
     setIsLoading(true);
     setIsSearching(true);
@@ -78,4 +78,4 @@ try {
 
 }
 
-export default MovieContext;
+export { MovieContext, MovieProvider };
