@@ -1,5 +1,7 @@
 import { NavLink } from "react-router";
 import useTheme from "../hooks/useTheme";
+import React from "react";
+import Filters from "./Filters";
 
 function Header() {
     const { theme, toggleTheme } = useTheme();
@@ -38,6 +40,7 @@ function Header() {
                     </div>
                 </div>
             </nav>
+            <Filters />
         </header>
     );
 }
