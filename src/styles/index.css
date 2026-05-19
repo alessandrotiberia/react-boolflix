@@ -2,7 +2,7 @@
   Stile generale del progetto
   ===========================
 
-  Questo file contiene gli stili globali dell'applicazione, cioè le regole
+  Questo file contiene gli stili glne, cioè le regoleobali dell'applicazio
   CSS che si applicano a tutta l'app (reset, tipografia di base, variabili,
   utility personalizzate, ecc.).
 
@@ -38,7 +38,7 @@
 }
 
 /* L'immagine deve coprire tutto lo spazio */
-.card-poster img {
+.card-poster {
     width: 100%;
     height: 100%;
     object-fit: cover;

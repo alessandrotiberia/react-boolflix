@@ -1,35 +1,33 @@
-// riceve info del film e stampa, funzione card
 import React from "react";
 
 function Card({ movie }) {
-
+    // Unifichiamo i nomi delle proprieta tra film e serie TV per evitare campi vuoti
     const title = movie.title || movie.name;
     const originalTitle = movie.original_title || movie.original_name;
 
-    // 2. Dizionario di mappatura: colleghiamo la lingua ISO (TMDb) al codice nazione (FlagCDN)
+    // Dizionario di mappatura per le bandiere
     const languageToCountryMap = {
-        en: 'gb', // Inglese -> Gran Bretagna
-        it: 'it', // Italiano -> Italia
-        fr: 'fr', // Francese -> Francia
-        es: 'es', // Spagnolo -> Spagna
-        de: 'de', // Tedesco -> Germania
-        ja: 'jp', // Giapponese -> Giappone
-        zh: 'cn', // Cinese -> Cina
-        ko: 'kr'  // Coreano -> Corea del Sud
+        en: 'gb', 
+        it: 'it', 
+        fr: 'fr', 
+        es: 'es', 
+        de: 'de', 
+        ja: 'jp', 
+        zh: 'cn', 
+        ko: 'kr'  
     };
     const countryCode = languageToCountryMap[movie.original_language];
 
-    //gestione img dimesione 342
+    // Gestione immagine di copertina dimensione 342
     const baseImageUrl = 'https://image.tmdb.org/t/p/w342';
-
     const posterImageUrl = movie.poster_path 
         ? `${baseImageUrl}${movie.poster_path}` 
         : 'https://placehold.co/342x513?text=Copertina+Non+Disponibile';
 
-    //voto recensioni 5 stelle 
+    // Voto recensioni base 10
     const decimalVote = movie.vote_average;
 
-    //arrotondato eccesso
+    // Voto recensioni base 5 arrotondato per eccesso
     const convertedVote = Math.ceil(decimalVote / 2);
 
     const renderStars = () => {
@@ -45,36 +43,41 @@ function Card({ movie }) {
         return starsArray;
     };
 
-
     return (
         <div className="movie-card">
 
-                {/* Immagine di copertina del film */}
+            {/* Immagine di copertina del film */}
             <img src={posterImageUrl} alt={title} className="card-poster" />
             
-            {/* Blocco delle informazioni */}
-            <div className="card-info"></div>
-            <ul>
-                {/* Estraiamo le proprietà dall'oggetto movie ricevuto dall'API */}
-                <li><strong>Titolo:</strong> {movie.title}</li>
-                <li><strong>Titolo Originale:</strong> {movie.original_title}</li>
-                <li>
-                    <strong>Lingua:</strong>{' '}
-                    {/* 4. Operatore ternario per gestire il caso in cui la bandiera non sia presente */}
-                    {countryCode ? (
-                        <img
-                            src={`https://flagcdn.com/16x12/${countryCode}.png`}
-                            alt={movie.original_language}
-                            className="flag-icon"
-                        />
-                    ) : (
-                        // Fallback: se la lingua non è mappata nel dizionario, mostriamo il testo grezzo
-                        <span className="text-language">{movie.original_language}</span>
-                    )}
-                </li>
-                <li><strong>Voto:</strong> {movie.vote_average}</li>
-            </ul>
+            {/* Blocco delle informazioni che appare in hover */}
+            <div className="card-info">
+                <ul>
+                    {/* Richiamiamo le variabili normalizzate per supportare anche le serie TV */}
+                    <li><strong>Titolo:</strong> {title}</li>
+                    <li><strong>Titolo Originale:</strong> {originalTitle}</li>
+                    <li>
+                        <strong>Lingua:</strong>{' '}
+                        {countryCode ? (
+                            <img
+                                src={`https://flagcdn.com/16x12/${countryCode}.png`}
+                                alt={movie.original_language}
+                                className="flag-icon"
+                            />
+                        ) : (
+                            <span className="text-language">{movie.original_language}</span>
+                        )}
+                    </li>
+                    {/* Richiamo corretto della funzione per le stelle */}
+                    <li><strong>Voto:</strong> {renderStars()}</li>
+                    
+                    {/* Inserimento della trama come richiesto dalla Milestone 4 */}
+                    <li className="overview">
+                        <strong>Overview:</strong> {movie.overview || 'Trama non disponibile.'}
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }
+
 export default Card;
