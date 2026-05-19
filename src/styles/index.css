@@ -10,6 +10,7 @@
   componenti. Per stili specifici di un singolo componente è preferibile
   usare un CSS Module (es. `NomeComponente.module.css`).
 */
+
 /* Container della griglia */
 .cards-grid {
     display: grid;
@@ -89,14 +90,4 @@
 /* Colore stelle */
 .fa-star {
     color: #f1c40f; /* Giallo oro */
-}
-.main-header {
-    background-color: #000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
