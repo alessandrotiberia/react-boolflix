@@ -10,3 +10,93 @@
   componenti. Per stili specifici di un singolo componente è preferibile
   usare un CSS Module (es. `NomeComponente.module.css`).
 */
+/* Container della griglia */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #141414; /* Sfondo scuro tipico Netflix */
+}
+
+/* La singola Card */
+.movie-card {
+    position: relative;
+    height: 450px;
+    background-color: #000;
+    border: 1px solid #333;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Effetto ingrandimento leggero al passaggio */
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* L'immagine deve coprire tutto lo spazio */
+.card-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* L'overlay con le scritte (inizialmente nascosto) */
+.card-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Sfondo nero quasi opaco */
+    color: white;
+    padding: 20px;
+    opacity: 0; /* NASCOSTO */
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+
+/* Quando vado sopra con il mouse, mostro l'overlay */
+.movie-card:hover .card-info {
+    opacity: 1; /* VISIBILE */
+}
+
+.card-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-info li {
+    margin-bottom: 10px;
+}
+
+/* Stile per la trama (overview) */
+.overview {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    overflow-y: auto; /* Se la trama è lunga, appare la scrollbar interna */
+    max-height: 180px;
+    padding-top: 10px;
+    border-top: 1px solid #444;
+}
+
+/* Colore stelle */
+.fa-star {
+    color: #f1c40f; /* Giallo oro */
+}
+.main-header {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

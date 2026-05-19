@@ -18,8 +18,42 @@ function Card({ movie }) {
         ko: 'kr'  // Coreano -> Corea del Sud
     };
     const countryCode = languageToCountryMap[movie.original_language];
+
+    //gestione img dimesione 342
+    const baseImageUrl = 'https://image.tmdb.org/t/p/w342';
+
+    const posterImageUrl = movie.poster_path 
+        ? `${baseImageUrl}${movie.poster_path}` 
+        : 'https://placehold.co/342x513?text=Copertina+Non+Disponibile';
+
+    //voto recensioni 5 stelle 
+    const decimalVote = movie.vote_average;
+
+    //arrotondato eccesso
+    const convertedVote = Math.ceil(decimalVote / 2);
+
+    const renderStars = () => {
+        const starsArray = [];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= convertedVote) {
+                starsArray.push(<i key={i} className="fa-solid fa-star"></i>);
+            } else {
+                starsArray.push(<i key={i} className="fa-regular fa-star"></i>);
+            }
+        }
+        
+        return starsArray;
+    };
+
+
     return (
-        <div className="card">
+        <div className="movie-card">
+
+                {/* Immagine di copertina del film */}
+            <img src={posterImageUrl} alt={title} className="card-poster" />
+            
+            {/* Blocco delle informazioni */}
+            <div className="card-info"></div>
             <ul>
                 {/* Estraiamo le proprietà dall'oggetto movie ricevuto dall'API */}
                 <li><strong>Titolo:</strong> {movie.title}</li>
